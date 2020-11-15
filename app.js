@@ -6,6 +6,7 @@ const cookieParser 		= require('cookie-parser');
 const home				= require('./controllers/home');
 const signup				= require('./controllers/sign-up');
 const login				= require('./controllers/login');
+const component				= require('./controllers/components');
 const app				= express();
 const port				= 3000;
 
@@ -21,6 +22,7 @@ app.use(exSession({secret: 'secret value', saveUninitialized: true, resave: fals
 app.use('/home', home);
 app.use('/sign-up', signup);
 app.use('/login', login);
+app.use('/components', component);
 
 //router
 app.get('/', (req, res)=>{
