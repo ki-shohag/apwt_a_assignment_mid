@@ -4,6 +4,7 @@ const bodyParser 		= require('body-parser');
 const exSession 		= require('express-session');
 const cookieParser 		= require('cookie-parser');
 const home				= require('./controllers/home');
+const signup				= require('./controllers/sign-up');
 const app				= express();
 const port				= 3000;
 
@@ -17,6 +18,7 @@ app.use(cookieParser());
 app.use(exSession({secret: 'secret value', saveUninitialized: true, resave: false}));
 
 app.use('/home', home);
+app.use('/sign-up', signup);
 
 //router
 app.get('/', (req, res)=>{
