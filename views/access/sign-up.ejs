@@ -29,7 +29,7 @@
         <div class="container d-flex align-items-center">
             <div class="row justify-content-center">
                 <div class="col-12 col-lg-8 text-center">
-                    <h1 class="logo"><a href="/manager">Computer Shop BD</a></h1>
+                    <h1 class="logo"><a href="/home">Computer Shop BD</a></h1>
                 </div>
                 <div class="col-12 col-lg-8">
                     <nav class="nav-menu d-none d-lg-block">
@@ -124,7 +124,7 @@
                                     </li>
                                 </ul>
                             </li>
-                            <li><a href="#contact">Sign In</a></li>
+                            <li><a href="/login">Sign In</a></li>
                         </ul>
                     </nav><!-- .nav-menu -->
 
@@ -140,18 +140,18 @@
                     <h2>Sign Up</h2><br>
                     <form method="post" action="/manager/signup">
                     <input class="form-control"type="text" placeholder="Full Name" name="full_name"><br>
-                    <input class="form-control"type="text" placeholder="User Name" name="user_name"><br>
                     <input class="form-control"type="email" placeholder="Email" name="email"><br>
                     <input class="form-control"type="number" placeholder="Phone" name="phone"><br>
-                    <input class="form-control"type="date" placeholder="Date of Birth" name="dob"><br>
-                    <input class="form-control"type="text" placeholder="Address" name="address"><br>
-                    <input class="form-control"type="text" placeholder="City" name="city"><br>
-                    <input class="form-control"type="text" placeholder="Country" name="country"><br>
-                    <input class="form-control"type="text" placeholder="Company Name" name="company_name"><br>
+                    <select class="form-control" name="user_type">
+                        <option disabled="disabled" selected>Select User Type</option>
+                        <option value="Admin">Admin</option>
+                        <option value="Customer">Customer</option>
+                    </select><br>
+                    <textarea name="address" class="form-control" cols="30" rows="3" placeholder="Address"></textarea><br>
                     <input class="form-control"type="password" placeholder="Password" name="password"><br>
                     <input class="form-control"type="password" placeholder="Re-enter Password" name="re_enter_password"><br>
                     <br><button class="form-control btn btn-primary">Sign Up</button><br><br>
-                    <a href="/manager/login">Want to sign in?</a><br><br>
+                    <a href="/login">Want to sign in?</a><br><br>
                     </form>
                 </div>
             </div>
