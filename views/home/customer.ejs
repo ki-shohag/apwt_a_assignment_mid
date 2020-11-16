@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <title>Casing</title>
+    <title>Admin</title>
     <meta content="" name="descriptison">
     <meta content="" name="keywords">
 
@@ -22,7 +22,17 @@
     <link href="/assets/vendor/aos/aos.css" rel="stylesheet">
     <link href="/assets/css/style.css" rel="stylesheet">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.22/css/dataTables.bootstrap4.min.css">
+
+    <style>
+        .featured-item-box{
+            min-height: 150px;
+            background:coral;
+            min-width: 80px;
+            color:white;
+            border-radius: 5px;
+            padding-top: 30px;
+        }
+    </style>
 </head>
 
 <body>
@@ -129,50 +139,44 @@
                             <li><a href="/login">Sign In</a></li>
                         </ul>
                     </nav><!-- .nav-menu -->
+
+                </div>
+                <div class="col-12 col-lg-8 text-center">
+                    <input id="autocomplete" type="text" class="form-control mt-2" placeholder="Search products...">
                 </div>
             </div>
         </div>
     </header><!-- End Header -->
 
     <main id="main">
-        <section>
-           <div class="row justify-content-center mt-5">
-               <div class="col-12 col-lg-8">
-                   <h2 class="text-center"><u><i>Casing</i></u></h2><br>
-                   <div class="row justify-content-center">
-                       <div class="col-12 col-lg-8 bg-secondary text-center text-light">
-                        <nav class="nav-menu">
-                            <ul>
-                                <li><a class="text-light" href="/components/casing/Corsair">Corsair</a></li>
-                                <li><a class="text-light" href="/components/casing/Gamdias">Gamdias</a></li>
-                                <li><a class="text-light" href="/components/casing/Cooler-Master">Cooler Master</a></li>
-                            </ul>
-                        </nav>
-                       </div>
-                   </div><br><br>
-                   <table id="myTable" class="table table-striped table-bordered" style="width:100%">
-                    <thead>
+        <section class="mt-5">
+            <div class="row justify-content-center">
+                <div class="col-12 col-lg-5 mt-5 text-center">
+                    <table class="table table-bordered text-left">
                         <tr>
-                            <th>Product Name</th>
-                            <th>Description</th>
-                            <th>Brand</th>
-                            <th>Price</th>
-                            <th>Action</th>
+                            <td>Name : </td>
+                            <td><%= user[0].full_name %></td>
                         </tr>
-                    </thead>
-                    <tbody>
-                        <% for(var i = 0; i < product.length; i++) { %>
                         <tr>
-                            <td><a href=""><%= product[i].name %></a></td>
-                            <td><%= product[i].description %></td>
-                            <td><%= product[i].brand %></td>
-                            <td><%= product[i].price %></td>
-                            <td><a href="/products/remove/<%= product[i].id %>" class="btn btn-block btn-danger">Remove</a></td>
+                            <td>Phone : </td>
+                            <td><%= user[0].phone %></td>
                         </tr>
-                        <% } %>
-                </table>
-               </div>
-           </div>
+                        <tr>
+                            <td>Address : </td>
+                            <td><%= user[0].address %></td>
+                        </tr>
+                        <tr>
+                            <td>Joining_Date : </td>
+                            <td><%= user[0].joining_date %></td>
+                        </tr>
+                    </table><br><br>
+                    <table class="table table-bordered text-left">
+                        <tr>
+                            <th>Purchase History</th>
+                        </tr>
+                    </table><br><br>
+                </div>
+            </div>
         </section>
     </main>
 
@@ -213,16 +217,6 @@
           source: [ "c++", "java", "php", "coldfusion", "javascript", "asp", "ruby" ]
         });
         </script>
-
-        
-    <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/1.10.22/js/dataTables.bootstrap4.min.js"></script>
-
-    <script>
-        $(document).ready(function () {
-            $('#myTable').DataTable();
-        });
-    </script>
 </body>
 
 </html>

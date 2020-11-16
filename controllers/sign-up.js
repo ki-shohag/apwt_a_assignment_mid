@@ -3,7 +3,7 @@ const router 	= express.Router();
 const userModel = require.main.require('./models/userModel');
 
 router.get('/', (req, res)=>{
-	res.render('access/sign-up');	
+	res.render('access/sign-up');
 });
 router.post('/', (req, res)=>{
 	var current_datetime = new Date()

@@ -19,6 +19,13 @@ module.exports= {
 			callback(results);
 		});
 	},
+	getByCategoryAndBrand: function(category,brand, callback){
+		var sql = "SELECT * FROM `product` WHERE category='"+brand+"' AND brand='"+category+"'";
+		console.log(sql);
+		db.getResults(sql, function(results){
+			callback(results);
+		});
+	},
 	getById: function(id, callback){
 		var sql = "select * from product where id='"+id+"'";
 		db.getResults(sql, function(results){
@@ -33,7 +40,6 @@ module.exports= {
 	},
 	insert: function(product, callback){
 		var sql = "INSERT INTO `product`(`id`, `name`, `description`, `price`, `category`, `brand`) VALUES (0,'"+product.name+"','"+product.description+"','"+product.price+"','"+product.category+"','"+product.brand+"')";
-		console.log(sql);
 		db.execute(sql, function(status){
 			callback(status);
 		});

@@ -6,63 +6,55 @@ router.get('/', (req, res)=>{
 	res.render('home/index');
 });
 router.get('/ram', (req, res)=>{
-	productsModel.getByCategory(category, function(result){
-		res.render('products/ram/ram', {products: result});
+	productsModel.getByCategory('Ram', function(result){
+		res.render('products/ram/ram', {product: result});
 	});
 });
-router.get('/ram/corsair', (req, res)=>{
-	res.render('products/ram/ram-brand', {brand: 'Corsair'});
-});
-router.get('/ram/gskill', (req, res)=>{
-	res.render('products/ram/ram-brand', {brand: 'GSkill'});
-});
-router.get('/ram/adata', (req, res)=>{
-	res.render('products/ram/ram-brand', {brand: 'Adata'});
-});
-router.get('/ram/avexir', (req, res)=>{
-	res.render('products/ram/ram-brand', {brand: 'Avexir'});
+router.get('/ram/:brand', (req, res)=>{
+	var brand = req.params.brand;
+	brand = brand.toUpperCase();
+	productsModel.getByCategoryAndBrand(brand, 'Ram',function(result){
+		res.render('products/ram/ram-brand', {brand: brand, product:result});
+	});
 });
 
 router.get('/ssd', (req, res)=>{
-	res.render('products/ssd/ssd');
+	productsModel.getByCategory('SSD', function(result){
+		res.render('products/ssd/ssd', {product: result});
+	});
 });
-router.get('/ssd/corsair', (req, res)=>{
-	res.render('products/ssd/ssd-brand', {brand: 'Corsair'});
-});
-router.get('/ssd/samsung', (req, res)=>{
-	res.render('products/ssd/ssd-brand', {brand: 'Samsung'});
-});
-router.get('/ssd/gigabyte', (req, res)=>{
-	res.render('products/ssd/ssd-brand', {brand: 'Gigabyte'});
+router.get('/ssd/:brand', (req, res)=>{
+	var brand = req.params.brand;
+	brand = brand.toUpperCase();
+	productsModel.getByCategoryAndBrand(brand, 'SSD',function(result){
+		res.render('products/ssd/ssd-brand', {brand: brand, product:result});
+	});
 });
 
 
 router.get('/graphics-card', (req, res)=>{
-	res.render('products/graphics-card/graphics-card');
+	productsModel.getByCategory('Graphics-Card', function(result){
+		res.render('products/graphics-card/graphics-card', {product:result});
+	});
 });
-router.get('/graphics-card/gigabyte', (req, res)=>{
-	res.render('products/graphics-card/graphics-card-brand', {brand: 'Gigabyte'});
-});
-router.get('/graphics-card/zotac', (req, res)=>{
-	res.render('products/graphics-card/graphics-card-brand', {brand: 'Zotac'});
-});
-router.get('/graphics-card/asus', (req, res)=>{
-	res.render('products/graphics-card/graphics-card-brand', {brand: 'Asus'});
-});
-router.get('/graphics-card/msi', (req, res)=>{
-	res.render('products/graphics-card/graphics-card-brand', {brand: 'MSI'});
+router.get('/graphics-card/:brand', (req, res)=>{
+	var brand = req.params.brand;
+	brand = brand.toUpperCase();
+	productsModel.getByCategoryAndBrand(brand, 'SSD',function(result){
+		res.render('products/graphics-card/graphics-card-brand', {brand: brand, product: result});
+	});
 });
 
 router.get('/casing', (req, res)=>{
-	res.render('products/casing/casing');
+	productsModel.getByCategory('Casing', function(result){
+		res.render('products/casing/casing', {product: result});
+	});
 });
-router.get('/casing/corsair', (req, res)=>{
-	res.render('products/casing/casing-brand', {brand: 'Cosair'});
-});
-router.get('/casing/gamdias', (req, res)=>{
-	res.render('products/casing/casing-brand', {brand: 'Gamdias'});
-});
-router.get('/casing/cooler-master', (req, res)=>{
-	res.render('products/casing/casing-brand', {brand: 'Cooler Master'});
+router.get('/casing/:brand', (req, res)=>{
+	var brand = req.params.brand;
+	brand = brand.toUpperCase();
+	productsModel.getByCategoryAndBrand(brand, 'Casing',function(result){
+		res.render('products/casing/casing-brand', {brand: brand, product: result});
+	});
 });
 module.exports = router;

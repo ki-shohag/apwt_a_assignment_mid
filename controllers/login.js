@@ -13,7 +13,14 @@ router.post('/', (req, res)=>{
 	userModel.validate(user, function(status){
 		if(status == true){
 			req.session.email = user.email;
-			res.redirect('/home/admin');
+			userModel.getByEmail(user.email, function(result){
+				if(result[0].type =="Admin"){
+					res.redirect('/home/admin');
+				}
+				else if(result[0].type=="Customer"){
+					res.redirect('/home/customer');
+				}
+			});
 		}
 		else{
 			res.redirect('/login');
