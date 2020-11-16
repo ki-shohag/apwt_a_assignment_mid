@@ -126,8 +126,18 @@
                                     </li>
                                 </ul>
                             </li>
-                            <li><a href="/sign-up">Sign Up</a></li>
-                            <li><a href="/login">Sign In</a></li>
+                            <% if(user[0].full_name!=null && user[0].full_name.length > 0 ){ %>
+                                <li><a href="/sign-out">Sign Out</a></li>
+                                <% if(user[0].type=="Admin"){ %>
+                                    <li><a href="/home/admin">Profile</a></li>
+                                <% } else{ %>
+                                    <li><a href="/home/customer">Profile</a></li>
+                                <% } %>
+                                
+                            <% } else if(user[0].full_name==null) { %>
+                                <li><a href="/sign-up">Sign Up</a></li>
+                                <li><a href="/login">Sign In</a></li>
+                            <% } %>
                         </ul>
                     </nav><!-- .nav-menu -->
 

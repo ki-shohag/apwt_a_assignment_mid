@@ -1,11 +1,11 @@
-const express 	= require('express');
+const express = require('express');
 const productsModel = require.main.require('./models/productModel');
-const router 	= express.Router();
+const router = express.Router();
 
-router.get('/', (req, res)=>{
-	res.render('home/index');
+router.get('/', (req, res) => {
+    res.render('home/index',{user: [{full_name: req.session.full_name, type: req.session.type}]});
 });
-router.post('/insert', (req, res)=>{
+router.post('/insert', (req, res) => {
     var product = {
         name: req.body.name,
         description: req.body.description,
@@ -13,24 +13,22 @@ router.post('/insert', (req, res)=>{
         category: req.body.category,
         brand: req.body.brand
     };
-    productsModel.getByName(product.name,function(result){
-        if(result.length > 0){
+    productsModel.getByName(product.name, function (result) {
+        if (result.length > 0) {
             res.redirect('/home/products');
-        }
-        else{
-            productsModel.insert(product, function(status){
-                if(status ==true){
+        } else {
+            productsModel.insert(product, function (status) {
+                if (status == true) {
                     res.redirect('/home/products');
-                }
-                else{
+                } else {
                     res.redirect('/home/products');
                 }
             });
         }
     });
 });
-router.get('/remove/:id', (req, res) =>{
-    productsModel.delete(req.params.id,function(status){
+router.get('/remove/:id', (req, res) => {
+    productsModel.delete(req.params.id, function (status) {
         res.redirect('/home/products');
     });
 });

@@ -125,8 +125,18 @@
                                     </li>
                                 </ul>
                             </li>
-                            <li><a href="/sign-up">Sign Up</a></li>
-                            <li><a href="/login">Sign In</a></li>
+                            <% if(user[0].full_name!=null && user[0].full_name.length > 0 ){ %>
+                                <li><a href="/sign-out">Sign Out</a></li>
+                                <% if(user[0].type=="Admin"){ %>
+                                    <li><a href="/home/admin">Profile</a></li>
+                                <% } else{ %>
+                                    <li><a href="/home/customer">Profile</a></li>
+                                <% } %>
+                                
+                            <% } else if(user[0].full_name==null) { %>
+                                <li><a href="/sign-up">Sign Up</a></li>
+                                <li><a href="/login">Sign In</a></li>
+                            <% } %>
                         </ul>
                     </nav><!-- .nav-menu -->
                 </div>
@@ -139,22 +149,26 @@
            <div class="row justify-content-center mt-5">
                <div class="col-12 col-lg-8">
                    <h2 class="text-center"><u><i><%= brand %> Laptops</i></u></h2><br>
-                <table id="myTable" class="table table-striped table-bordered" style="width:100%">
+                   <table id="myTable" class="table table-striped table-bordered" style="width:100%">
                     <thead>
                         <tr>
                             <th>Product Name</th>
-                            <th>Review</th>
+                            <th>Description</th>
+                            <th>Brand</th>
                             <th>Price</th>
                             <th>Action</th>
                         </tr>
                     </thead>
-                    <tbody> 
+                    <tbody>
+                        <% for(var i = 0; i < product.length; i++) { %>
                         <tr>
-                            <td><a href=""><%= %></a></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                            <td><a href=""><%= product[i].name %></a></td>
+                            <td><%= product[i].description %></td>
+                            <td><%= product[i].brand %></td>
+                            <td><%= product[i].price %></td>
+                            <td><a href="/products/remove/<%= product[i].id %>" class="btn btn-block btn-danger">Remove</a></td>
                         </tr>
+                        <% } %>
                 </table>
                </div>
            </div>

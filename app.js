@@ -11,6 +11,7 @@ const laptops			= require('./controllers/laptops');
 const accessories		= require('./controllers/accessories');
 const monitors		= require('./controllers/monitors');
 const products		= require('./controllers/products');
+const signOut		= require('./controllers/sign-out');
 const app				= express();
 const port				= 3000;
 
@@ -31,6 +32,7 @@ app.use('/laptops', laptops);
 app.use('/accessories', accessories);
 app.use('/monitors', monitors);
 app.use('/products', products);
+app.use('/sign-out', signOut);
 
 //router
 app.get('/', (req, res)=>{
