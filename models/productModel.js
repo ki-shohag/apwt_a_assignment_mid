@@ -7,6 +7,13 @@ module.exports= {
 			callback(results);
 		});
 	},
+	getByText: function(text, callback){
+		var sql = "SELECT * FROM `product` WHERE name LIKE '%"+text+"%' OR description LIKE '%"+text+"%' OR category LIKE '%"+text+"%' OR brand LIKE '%"+text+"%'";
+		//console.log(sql);
+		db.getResults(sql, function(results){
+			callback(results);
+		});
+	},
 	getByBrand: function(brand, callback){
 		var sql = "SELECT * FROM `product` WHERE brand='"+brand+"'";
 		db.getResults(sql, function(results){
@@ -15,14 +22,12 @@ module.exports= {
 	},
 	getByCategory: function(category, callback){
 		var sql = "SELECT * FROM `product` WHERE category='"+category+"'";
-		//console.log(sql);
 		db.getResults(sql, function(results){
 			callback(results);
 		});
 	},
 	getByCategoryAndBrand: function(category,brand, callback){
 		var sql = "SELECT * FROM `product` WHERE category='"+brand+"' AND brand='"+category+"'";
-		console.log(sql);
 		db.getResults(sql, function(results){
 			callback(results);
 		});
@@ -47,7 +52,6 @@ module.exports= {
 	},
 	insert: function(product, callback){
 		var sql = "INSERT INTO `product`(`id`, `name`, `description`, `price`, `category`, `brand`) VALUES (0,'"+product.name+"','"+product.description+"','"+product.price+"','"+product.category+"','"+product.brand+"')";
-		console.log(sql);
 		db.execute(sql, function(status){
 			callback(status);
 		});
@@ -62,5 +66,11 @@ module.exports= {
 		db.execute(sql, function(status){
 			callback(status);
 		});
-	}
+	},
+	insertReview: function(review, callback){
+		var sql = "INSERT INTO `review`(`id`, `body`, `reviewer_name`, `product_id`) VALUES (0,'"+review.body+"','"+review.reviwer_name+"','"+review.product_id+"')";
+		db.execute(sql, function(status){
+			callback(status);
+		});
+	},
 }

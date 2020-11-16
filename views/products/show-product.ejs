@@ -135,8 +135,18 @@
                                     </li>
                                 </ul>
                             </li>
-                            <li><a href="/sign-up">Sign Up</a></li>
-                            <li><a href="/login">Sign In</a></li>
+                            <% if(user[0].full_name!=null && user[0].full_name.length > 0 ){ %>
+                                <li><a href="/sign-out">Sign Out</a></li>
+                                <% if(user[0].type=="Admin"){ %>
+                                    <li><a href="/home/admin">Profile</a></li>
+                                <% } else{ %>
+                                    <li><a href="/home/customer">Profile</a></li>
+                                <% } %>
+                                
+                            <% } else if(user[0].full_name==null) { %>
+                                <li><a href="/sign-up">Sign Up</a></li>
+                                <li><a href="/login">Sign In</a></li>
+                            <% } %>
                         </ul>
                     </nav><!-- .nav-menu -->
 
@@ -150,33 +160,37 @@
 
     <main id="main">
         <section class="mt-5">
-            <br><br><h4 class="text-center">Product Name</h4>
+            <br><br><h4 class="text-center"><b><u><i>Product Details</i></u></b></h4>
             <div class="row justify-content-center">
                 <div class="col-12 col-lg-5 mt-3">
                     <table class="table table-bordered">
                         <tr>
                             <td>Product Name : </td> 
-                            <td> </td> 
+                            <td> <%= product[0].name %></td> 
                         </tr>
                         <tr>
-                            <td>Specification : </td> 
-                            <td> </td> 
+                            <td>Description : </td> 
+                            <td> <%= product[0].description %></td> 
                         </tr>
                         <tr>
-                            <td>Review : </td> 
-                            <td> </td> 
+                            <td>Brand : </td> 
+                            <td> <%= product[0].brand %></td> 
+                        </tr>
+                        <tr>
+                            <td>Category : </td> 
+                            <td> <%= product[0].category %></td> 
                         </tr>
                         <tr>
                             <td>Price : </td> 
-                            <td> </td> 
-                        </tr>
-                        <tr>
-                            <td>Action : </td> 
-                            <td> </td> 
+                            <td> <%= product[0].price %></td> 
                         </tr>
                     </table><br>
-                    <textarea class="form-control" name="review" cols="30" rows="5" placeholder="Customer Review"></textarea><br>
-                    <button class="btn btn-success">Submit</button>
+                    <% if(user[0].full_name!=null && user[0].full_name.length > 0) { %>
+                        <form action="/products/review/<%= product[0].id %>" method="post">
+                            <textarea class="form-control" name="review_body" cols="30" rows="5" placeholder="Customer Review"></textarea><br>
+                            <button class="btn btn-success" type="submit">Submit</button>
+                        </form>
+                    <% } %>
                 </div>
             </div>
         </section>

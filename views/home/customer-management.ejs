@@ -152,7 +152,7 @@
     <main id="main">
         <section class="mt-5">
             <div class="row justify-content-center mt-5">
-                   <div class="col-12 col-lg-8">
+                   <div class="col-12 col-lg-6">
                     <table id="myTable" class="table table-striped table-bordered" style="width:100%">
                         <thead>
                             <tr>
@@ -165,7 +165,11 @@
                             <% for(var i = 0; i < users.length; i++) { %>
                                 <tr>
                                     <td><%= users[i].full_name %></td>
-                                    <td><%= users[i].joining_date %></td>
+                                    <%
+                                    var current_datetime = users[i].joining_date;
+                                    var formatted_date =  current_datetime.getFullYear()+ "-" + (current_datetime.getMonth() + 1) + "-" +current_datetime.getDate();
+                                    %>
+                                    <td><%= formatted_date %></td>
                                     <td><a href="/home/customers/remove/<%= users[i].id %>" class="btn btn-danger btn-block">Remove</a></td>
                                 </tr>
                             <% } %>

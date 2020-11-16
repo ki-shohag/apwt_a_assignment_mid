@@ -3,7 +3,17 @@ const productsModel = require.main.require('./models/productModel');
 const router = express.Router();
 
 router.get('/', (req, res) => {
-    res.render('home/index',{user: [{full_name: req.session.full_name, type: req.session.type}]});
+    if (req.session.full_name != null && req.session.type != null) {
+
+        res.render('home/index', {
+            user: [{
+                full_name: req.session.full_name,
+                type: req.session.type
+            }]
+        });
+    } else {
+        res.redirect('/login');
+    }
 });
 router.post('/insert', (req, res) => {
     var product = {
@@ -32,4 +42,50 @@ router.get('/remove/:id', (req, res) => {
         res.redirect('/home/products');
     });
 });
+router.get('/show-product/:id', (req, res) => {
+    if (req.session.full_name != null && req.session.type != null) {
+        productsModel.getById(req.params.id, function (result) {
+            res.render('products/show-product', {
+                product: result,
+                user: [{
+                    full_name: req.session.full_name,
+                    type: req.session.type
+                }]
+            });
+        });
+    } else {
+        productsModel.getById(req.params.id, function (result) {
+            res.render('products/show-product', {
+                product: result,
+                user: [{
+                    full_name: null,
+                    type: null
+                }]
+            });
+        });
+    }
+});
+router.post('/review/:id', function (req, res){
+    var review = {};
+    review.body = req.body.review_body;
+    review.product_id = req.params.id;
+    review.reviwer_name = req.session.full_name;
+    productsModel.insertReview(review, function (status){
+       if(status==true){
+           res.redirect('/home');
+       }else{
+        res.redirect('/home');
+       }
+    });
+});
+router.post('/search', function(req, res){
+    searchText = req.body.userName;
+    productsModel.getByText(searchText, function(result){
+        if(result){
+            res.json({user:result});
+        }else{
+            res.json({user:'error'});
+        }
+    });
+})
 module.exports = router;
