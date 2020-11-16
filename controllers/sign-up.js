@@ -7,7 +7,8 @@ router.get('/', (req, res)=>{
 });
 router.post('/', (req, res)=>{
 	var current_datetime = new Date()
-	var formatted_date = current_datetime.getDate() + "-" + (current_datetime.getMonth() + 1) + "-" + current_datetime.getFullYear();
+	var formatted_date =  current_datetime.getFullYear()+ "-" + (current_datetime.getMonth() + 1) + "-" +current_datetime.getDate();
+	console.log(formatted_date);
 	var user = {
 		full_name: req.body.full_name,
 		email: req.body.email,

@@ -10,6 +10,7 @@ const component			= require('./controllers/components');
 const laptops			= require('./controllers/laptops');
 const accessories		= require('./controllers/accessories');
 const monitors		= require('./controllers/monitors');
+const products		= require('./controllers/products');
 const app				= express();
 const port				= 3000;
 
@@ -29,6 +30,7 @@ app.use('/components', component);
 app.use('/laptops', laptops);
 app.use('/accessories', accessories);
 app.use('/monitors', monitors);
+app.use('/products', products);
 
 //router
 app.get('/', (req, res)=>{

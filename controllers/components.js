@@ -1,11 +1,14 @@
 const express 	= require('express');
+const productsModel = require.main.require('./models/productModel');
 const router 	= express.Router();
 
 router.get('/', (req, res)=>{
 	res.render('home/index');
 });
 router.get('/ram', (req, res)=>{
-	res.render('products/ram/ram');
+	productsModel.getByCategory(category, function(result){
+		res.render('products/ram/ram', {products: result});
+	});
 });
 router.get('/ram/corsair', (req, res)=>{
 	res.render('products/ram/ram-brand', {brand: 'Corsair'});
