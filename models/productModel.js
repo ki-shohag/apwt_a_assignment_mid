@@ -9,7 +9,6 @@ module.exports= {
 	},
 	getByText: function(text, callback){
 		var sql = "SELECT * FROM `product` WHERE name LIKE '%"+text+"%' OR description LIKE '%"+text+"%' OR category LIKE '%"+text+"%' OR brand LIKE '%"+text+"%'";
-		//console.log(sql);
 		db.getResults(sql, function(results){
 			callback(results);
 		});

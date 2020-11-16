@@ -35,7 +35,6 @@ router.get('/ssd', (req, res) => {
 router.get('/ssd/:brand', (req, res) => {
 	var brand = req.params.brand;
 	productsModel.getByCategoryAndBrand(brand, 'SSD', function (result) {
-		console.log(result);
 		res.render('products/ssd/ssd-brand', {
 			brand: brand,
 			product: result,
@@ -55,7 +54,7 @@ router.get('/graphics-card', (req, res) => {
 });
 router.get('/graphics-card/:brand', (req, res) => {
 	var brand = req.params.brand;
-	productsModel.getByCategoryAndBrand(brand, 'Gaphics-Card', function (result) {
+	productsModel.getByCategoryAndBrand(brand, 'Graphics-Card', function (result) {
 		res.render('products/graphics-card/graphics-card-brand', {
 			brand: brand,
 			product: result,
