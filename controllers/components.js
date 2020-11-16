@@ -3,7 +3,7 @@ const productsModel = require.main.require('./models/productModel');
 const router = express.Router();
 
 router.get('/', (req, res) => {
-	res.render('home/index',{user: [{full_name: req.session.full_name, type: req.session.type}]});
+	res.render('products/components',{user: [{full_name: req.session.full_name, type: req.session.type}]});
 });
 router.get('/ram', (req, res) => {
 	productsModel.getByCategory('Ram', function (result) {

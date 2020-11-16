@@ -15,6 +15,7 @@ module.exports= {
 	},
 	getByCategory: function(category, callback){
 		var sql = "SELECT * FROM `product` WHERE category='"+category+"'";
+		//console.log(sql);
 		db.getResults(sql, function(results){
 			callback(results);
 		});
@@ -38,8 +39,15 @@ module.exports= {
 			callback(results);
 		});
 	},
+	getFeaturedItems: function(callback){
+		var sql = "SELECT * FROM `product` ORDER BY id DESC LIMIT 10";
+		db.getResults(sql, function(results){
+			callback(results);
+		});
+	},
 	insert: function(product, callback){
 		var sql = "INSERT INTO `product`(`id`, `name`, `description`, `price`, `category`, `brand`) VALUES (0,'"+product.name+"','"+product.description+"','"+product.price+"','"+product.category+"','"+product.brand+"')";
+		console.log(sql);
 		db.execute(sql, function(status){
 			callback(status);
 		});

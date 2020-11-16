@@ -26,7 +26,7 @@
     <style>
         .featured-item-box{
             min-height: 150px;
-            background:coral;
+            background:#3b555d;
             min-width: 80px;
             color:white;
             border-radius: 5px;
@@ -46,7 +46,7 @@
                     <nav class="nav-menu d-none d-lg-block">
                         <ul>
                             <li><a href="/home">Home</a></li>
-                            <li class="drop-down"><a href="">Components</a>
+                            <li class="drop-down"><a href="/components">Components</a>
                                 <ul>
                                     <li class="drop-down"><a href="/components/ram">Ram</a>
                                         <ul>
@@ -90,7 +90,7 @@
                                     <li><a href="/laptops/Lenovo">Lenovo</a></li>
                                 </ul>
                             </li>
-                            <li class="drop-down"><a href="monitors">Monitor</a>
+                            <li class="drop-down"><a href="/monitors">Monitor</a>
                                 <ul>
                                     <li><a href="/monitors/HP">HP</a></li>
                                     <li><a href="/monitors/Dell">Dell</a></li>
@@ -162,13 +162,18 @@
             <div class="row justify-content-center">
                 <div class="col-12 col-lg-9 mt-5 text-center">
                     <h4>Featured Products</h4><br><br>
-                        <div class="row">
-                            <div class="col-3 featured-item-box">
-                                <label for="">Product Name</label><br>
-                                <label for="">Price</label><br>
+                    <div class="row justify-content-center">
+                    <% for(var i = 0; i < featuredResult.length; i++) { %>
+                            <div class="col-3 m-2 featured-item-box text-left">
+                                <label for="">Product Name : <%= featuredResult[i].name %></label><br>
+                                <label for="">Description : <%= featuredResult[i].description %></label><br>
+                                <label for="">Brand : <%= featuredResult[i].brand %></label><br>
+                                <label for="">Category : <%= featuredResult[i].category %></label><br>
+                                <label for="">Price : <%= featuredResult[i].price %></label><br>
                                 <button class="btn btn-success btn-block text-light">Show</button><br>
                             </div>
-                        </div>              
+                    <% } %>       
+                    </div>   
                 </div>
             </div>
         </section>

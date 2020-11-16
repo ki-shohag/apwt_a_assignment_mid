@@ -4,26 +4,42 @@ const userModel = require.main.require('./models/userModel');
 const productModel = require.main.require('./models/productModel');
 
 router.get('/', (req, res) => {
-	if(req.session.email!=null) {
+	if (req.session.email != null) {
 		userModel.getAllCustomer(function (result) {
+			productModel.getFeaturedItems(function (featuredResult) {
+				res.render('home/index', {
+					users: result,
+					user: [{
+						full_name: req.session.full_name,
+						type: req.session.type
+					}],
+					featuredResult: featuredResult
+				});
+			})
+		});
+	} else {
+		productModel.getFeaturedItems(function (featuredResult) {
 			res.render('home/index', {
-				users: result,
-				user: [{full_name: req.session.full_name, type: req.session.type}]
+				user: [{
+					full_name: null,
+					type: null
+				}],
+				featuredResult: featuredResult
 			});
 		});
-	}
-	else{
-		res.render('home/index', {user: [{full_name:null, type:null}]});
 	}
 });
 router.get('/products', (req, res) => {
 	if (req.session.email != null) {
 		productModel.getAllProduct(function (result) {
-				res.render('home/product-management', {
-					products: result,
-					user: [{full_name: req.session.full_name, type: req.session.type}]
-				});
+			res.render('home/product-management', {
+				products: result,
+				user: [{
+					full_name: req.session.full_name,
+					type: req.session.type
+				}]
 			});
+		});
 	} else {
 		res.redirect('/login');
 	}
@@ -31,19 +47,24 @@ router.get('/products', (req, res) => {
 router.get('/customers', (req, res) => {
 	if (req.session.email != null) {
 		userModel.getAllCustomer(function (result) {
-				res.render('home/customer-management', {
-					users: result,
-					user: [{full_name: req.session.full_name, type: req.session.type}]
-				});
+			res.render('home/customer-management', {
+				users: result,
+				user: [{
+					full_name: req.session.full_name,
+					type: req.session.type
+				}]
 			});
+		});
 	} else {
 		res.redirect('/login');
 	}
 });
 router.get('/admin', (req, res) => {
 	if (req.session.email != null) {
-		userModel.getByEmail(req.session.email, function(result) {
-			res.render('home/admin', {user:result});
+		userModel.getByEmail(req.session.email, function (result) {
+			res.render('home/admin', {
+				user: result
+			});
 		})
 	} else {
 		res.redirect('/login');
@@ -51,7 +72,7 @@ router.get('/admin', (req, res) => {
 });
 router.get('/customer', (req, res) => {
 	if (req.session.email != null) {
-		userModel.getByEmail(req.session.email, function(result){
+		userModel.getByEmail(req.session.email, function (result) {
 			res.render('home/customer', {
 				user: result
 			});

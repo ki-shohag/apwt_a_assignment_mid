@@ -36,7 +36,7 @@
                     <nav class="nav-menu d-none d-lg-block">
                         <ul>
                             <li><a href="/home">Home</a></li>
-                            <li class="drop-down"><a href="">Components</a>
+                            <li class="drop-down"><a href="/components">Components</a>
                                 <ul>
                                     <li class="drop-down"><a href="/components/ram">Ram</a>
                                         <ul>
@@ -154,31 +154,35 @@
                        <div class="col-12 col-lg-8 bg-secondary text-center text-light">
                         <nav class="nav-menu">
                             <ul>
-                                <li><a class="text-light" href="#">HP</a></li>
-                                <li><a class="text-light" href="#">Dell</a></li>
-                                <li><a class="text-light" href="#">LG</a></li>
-                                <li><a class="text-light" href="#">Samsung</a></li>
-                                <li><a class="text-light" href="#">BenQ</a></li>
+                                <li><a class="text-light" href="/monitors/HP">HP</a></li>
+                                <li><a class="text-light" href="/monitors/Dell">Dell</a></li>
+                                <li><a class="text-light" href="/monitors/LG">LG</a></li>
+                                <li><a class="text-light" href="/monitors/Samsung">Samsung</a></li>
+                                <li><a class="text-light" href="/monitors/BenQ">BenQ</a></li>
                             </ul>
                         </nav>
                        </div>
                    </div><br><br>
-                <table id="myTable" class="table table-striped table-bordered" style="width:100%">
+                   <table id="myTable" class="table table-striped table-bordered" style="width:100%">
                     <thead>
                         <tr>
                             <th>Product Name</th>
-                            <th>Review</th>
+                            <th>Description</th>
+                            <th>Brand</th>
                             <th>Price</th>
                             <th>Action</th>
                         </tr>
                     </thead>
-                    <tbody> 
+                    <tbody>
+                        <% for(var i = 0; i < product.length; i++) { %>
                         <tr>
-                            <td><a href=""><%= %></a></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                            <td><a href=""><%= product[i].name %></a></td>
+                            <td><%= product[i].description %></td>
+                            <td><%= product[i].brand %></td>
+                            <td><%= product[i].price %></td>
+                            <td><a href="/products/remove/<%= product[i].id %>" class="btn btn-block btn-danger">Remove</a></td>
                         </tr>
+                        <% } %>
                 </table>
                </div>
            </div>

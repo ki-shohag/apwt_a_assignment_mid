@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <title>Casing</title>
+    <title>Accessories</title>
     <meta content="" name="descriptison">
     <meta content="" name="keywords">
 
@@ -80,7 +80,7 @@
                                     <li><a href="/laptops/Lenovo">Lenovo</a></li>
                                 </ul>
                             </li>
-                            <li class="drop-down"><a href="/monitors">Monitor</a>
+                            <li class="drop-down"><a href="monitors">Monitor</a>
                                 <ul>
                                     <li><a href="/monitors/HP">HP</a></li>
                                     <li><a href="/monitors/Dell">Dell</a></li>
@@ -148,28 +148,19 @@
         <section>
            <div class="row justify-content-center mt-5">
                <div class="col-12 col-lg-8">
-                   <h2 class="text-center"><u><i><%= brand %> Casing</i></u></h2><br>
-                   <table id="myTable" class="table table-striped table-bordered" style="width:100%">
-                    <thead>
-                        <tr>
-                            <th>Product Name</th>
-                            <th>Description</th>
-                            <th>Brand</th>
-                            <th>Price</th>
-                            <th>Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <% for(var i = 0; i < product.length; i++) { %>
-                        <tr>
-                            <td><a href=""><%= product[i].name %></a></td>
-                            <td><%= product[i].description %></td>
-                            <td><%= product[i].brand %></td>
-                            <td><%= product[i].price %></td>
-                            <td><a href="/products/remove/<%= product[i].id %>" class="btn btn-block btn-danger">Remove</a></td>
-                        </tr>
-                        <% } %>
-                </table>
+                   <h2 class="text-center"><u><i>Accessories</i></u></h2><br>
+                   <div class="row justify-content-center">
+                       <div class="col-12 col-lg-8 bg-secondary text-center text-light">
+                        <nav class="nav-menu">
+                            <ul>
+                                <li><a class="text-light" href="/accessories/keyboard">Keyboard</li>
+                                <li><a class="text-light" href="/accessories/mouse">Mouse</a></li>
+                                <li><a class="text-light" href="/accessories/pen-drive">Pen Drive</a></li>
+                                <li><a class="text-light" href="/accessories/webcam">Webcam</a></li>
+                            </ul>
+                        </nav>
+                       </div>
+                   </div><br><br>
                </div>
            </div>
         </section>
