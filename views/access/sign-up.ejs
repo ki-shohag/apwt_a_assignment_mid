@@ -138,19 +138,19 @@
             <div class="row justify-content-center mt-5">
                 <div class="col col-sm-7 col-lg-4 col-xl-3 text-center" id="login-box">
                     <h2>Sign Up</h2><br>
-                    <form method="post" action="/manager/signup">
+                    <form method="post" action="/sign-up">
                     <input class="form-control"type="text" placeholder="Full Name" name="full_name"><br>
                     <input class="form-control"type="email" placeholder="Email" name="email"><br>
                     <input class="form-control"type="number" placeholder="Phone" name="phone"><br>
-                    <select class="form-control" name="user_type">
+                    <select class="form-control" name="type">
                         <option disabled="disabled" selected>Select User Type</option>
                         <option value="Admin">Admin</option>
                         <option value="Customer">Customer</option>
                     </select><br>
                     <textarea name="address" class="form-control" cols="30" rows="3" placeholder="Address"></textarea><br>
                     <input class="form-control"type="password" placeholder="Password" name="password"><br>
-                    <input class="form-control"type="password" placeholder="Re-enter Password" name="re_enter_password"><br>
-                    <br><button class="form-control btn btn-primary">Sign Up</button><br><br>
+                    <input class="form-control"type="password" placeholder="Re-enter Password" name="confirm_password"><br>
+                    <br><button class="form-control btn btn-primary" type="submit">Sign Up</button><br><br>
                     <a href="/login">Want to sign in?</a><br><br>
                     </form>
                 </div>
