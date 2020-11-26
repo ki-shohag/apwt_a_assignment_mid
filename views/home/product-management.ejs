@@ -238,7 +238,7 @@
                         <tbody>
                             <% for(var i = 0; i < products.length; i++) { %>
                                 <tr>
-                                    <td><a href="#"><%= products[i].name %></a></td>
+                                    <td><a href="/products/show-product/<%= products[i].id %>"><%= products[i].name %></a></td>
                                     <td><%= products[i].description %></td>
                                     <td><%= products[i].brand %></td>
                                     <td><%= products[i].category %></td>

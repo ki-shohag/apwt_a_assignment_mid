@@ -1,5 +1,6 @@
 const express = require('express');
 const productsModel = require.main.require('./models/productModel');
+const reviewModel = require.main.require('./models/reviewModel');
 const router = express.Router();
 
 router.get('/', (req, res) => {
@@ -45,22 +46,28 @@ router.get('/remove/:id', (req, res) => {
 router.get('/show-product/:id', (req, res) => {
     if (req.session.full_name != null && req.session.type != null) {
         productsModel.getById(req.params.id, function (result) {
-            res.render('products/show-product', {
-                product: result,
-                user: [{
-                    full_name: req.session.full_name,
-                    type: req.session.type
-                }]
+            reviewModel.getByProductId(req.params.id, function (review) {
+                res.render('products/show-product', {
+                    product: result,
+                    user: [{
+                        full_name: req.session.full_name,
+                        type: req.session.type
+                    }],
+                    review: review
+                });
             });
         });
     } else {
         productsModel.getById(req.params.id, function (result) {
-            res.render('products/show-product', {
-                product: result,
-                user: [{
-                    full_name: null,
-                    type: null
-                }]
+            reviewModel.getByProductId(req.params.id, function (review) {
+                res.render('products/show-product', {
+                    product: result,
+                    user: [{
+                        full_name: null,
+                        type: null
+                    }],
+                    review:review
+                });
             });
         });
     }
@@ -72,9 +79,9 @@ router.post('/review/:id', function (req, res){
     review.reviwer_name = req.session.full_name;
     productsModel.insertReview(review, function (status){
        if(status==true){
-           res.redirect('/home');
+           res.redirect('/products/show-product/'+req.params.id);
        }else{
-        res.redirect('/home');
+        res.redirect('/products/show-product/'+req.params.id);
        }
     });
 });

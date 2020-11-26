@@ -175,7 +175,7 @@
                     <tbody>
                         <% for(var i = 0; i < product.length; i++) { %>
                         <tr>
-                            <td><a href=""><%= product[i].name %></a></td>
+                            <td><a href="/products/show-product/<%= product[i].id %>"><%= product[i].name %></a></td>
                             <td><%= product[i].description %></td>
                             <td><%= product[i].brand %></td>
                             <td><%= product[i].price %></td>

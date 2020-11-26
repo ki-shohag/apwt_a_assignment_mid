@@ -151,18 +151,15 @@
                     </nav><!-- .nav-menu -->
 
                 </div>
-                <div class="col-12 col-lg-8 text-center">
-                    <input id="autocomplete" type="text" class="form-control mt-2" placeholder="Search products...">
-                </div>
             </div>
         </div>
     </header><!-- End Header -->
 
     <main id="main">
         <section class="mt-5">
-            <br><br><h4 class="text-center"><b><u><i>Product Details</i></u></b></h4>
             <div class="row justify-content-center">
                 <div class="col-12 col-lg-5 mt-3">
+                    <br><br><h4 class="text-center"><b><u><i>Product Details</i></u></b></h4>
                     <table class="table table-bordered">
                         <tr>
                             <td>Product Name : </td> 
@@ -191,6 +188,18 @@
                             <button class="btn btn-success" type="submit">Submit</button>
                         </form>
                     <% } %>
+                </div>
+                <div class="col-12 col-lg-4 mt-3">
+                    <br><br><h4 class="text-center"><b><u><i>Customer Review</i></u></b></h4>
+                    <div class="">
+                        <ul>
+                            <% if(review!=null) { %>
+                                <% for(var i=0; i< review.length; i++) { %>
+                                    <li><%= review[i].reviewer_name %> --> <%= review[i].body %></li>
+                                <% } %>
+                            <% } %>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </section>
